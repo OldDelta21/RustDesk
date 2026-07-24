@@ -327,7 +327,7 @@ class _PortForwardPageState extends State<PortForwardPage>
                 child: Row(children: [
                   Expanded(
                     child: Align(
-                      alignment: Alignment.centerLeft,
+                      alignment: AlignmentDirectional.centerStart,
                       child: SizedBox(
                         width: 120,
                         child: ElevatedButton(

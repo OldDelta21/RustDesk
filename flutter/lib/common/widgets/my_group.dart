@@ -84,7 +84,7 @@ class _MyGroupState extends State<MyGroup> {
         ).marginOnly(right: 12.0),
         Expanded(
           child: Align(
-              alignment: Alignment.topLeft,
+              alignment: AlignmentDirectional.topStart,
               child: MyGroupPeerView(
                 menuPadding: widget.menuPadding,
               )),
@@ -116,7 +116,7 @@ class _MyGroupState extends State<MyGroup> {
         ).marginOnly(bottom: 12.0),
         Expanded(
           child: Align(
-              alignment: Alignment.topLeft,
+              alignment: AlignmentDirectional.topStart,
               child: MyGroupPeerView(
                 menuPadding: widget.menuPadding,
               )),

@@ -444,8 +444,8 @@ class _CmHeaderState extends State<_CmHeader>
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
         gradient: LinearGradient(
-          begin: Alignment.topRight,
-          end: Alignment.bottomLeft,
+          begin: AlignmentDirectional.topEnd,
+          end: AlignmentDirectional.bottomStart,
           colors: [
             Color(0xff00bfe1),
             Color(0xff0071ff),

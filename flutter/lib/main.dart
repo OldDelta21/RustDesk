@@ -369,6 +369,7 @@ void _runApp(
       theme: MyTheme.lightTheme,
       darkTheme: MyTheme.darkTheme,
       themeMode: themeMode,
+      locale: const Locale('fa', 'IR'),
       home: home,
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
@@ -383,7 +384,10 @@ void _runApp(
       builder: (context, child) {
         child = _keepScaleBuilder(context, child);
         child = botToastBuilder(context, child);
-        return child;
+        return Directionality(
+          textDirection: TextDirection.rtl,
+          child: child,
+        );
       },
     ),
   ));
@@ -506,6 +510,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
           theme: MyTheme.lightTheme,
           darkTheme: MyTheme.darkTheme,
           themeMode: MyTheme.currentThemeMode(),
+          locale: const Locale('fa', 'IR'),
           home: isDesktop
               ? const DesktopTabPage()
               : isWeb
@@ -521,8 +526,9 @@ class _AppState extends State<App> with WidgetsBindingObserver {
             // FirebaseAnalyticsObserver(analytics: analytics),
             BotToastNavigatorObserver(),
           ],
-          builder: isAndroid
-              ? (context, child) => AccessibilityListener(
+          builder: (context, child) {
+            final Widget wrapped = isAndroid
+                ? AccessibilityListener(
                     child: MediaQuery(
                       data: MediaQuery.of(context).copyWith(
                         textScaler: TextScaler.linear(1.0),
@@ -530,19 +536,24 @@ class _AppState extends State<App> with WidgetsBindingObserver {
                       child: child ?? Container(),
                     ),
                   )
-              : (context, child) {
-                  child = _keepScaleBuilder(context, child);
-                  child = botToastBuilder(context, child);
-                  if ((isDesktop && desktopType == DesktopType.main) ||
-                      isWebDesktop) {
-                    child = keyListenerBuilder(context, child);
-                  }
-                  if (isLinux) {
-                    return buildVirtualWindowFrame(context, child);
-                  } else {
-                    return workaroundWindowBorder(context, child);
-                  }
-                },
+                : () {
+                    Widget c = _keepScaleBuilder(context, child);
+                    c = botToastBuilder(context, c);
+                    if ((isDesktop && desktopType == DesktopType.main) ||
+                        isWebDesktop) {
+                      c = keyListenerBuilder(context, c);
+                    }
+                    if (isLinux) {
+                      return buildVirtualWindowFrame(context, c);
+                    } else {
+                      return workaroundWindowBorder(context, c);
+                    }
+                  }();
+            return Directionality(
+              textDirection: TextDirection.rtl,
+              child: wrapped,
+            );
+          },
         ),
       );
     });

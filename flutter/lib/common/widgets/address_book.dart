@@ -358,7 +358,7 @@ class _AddressBookState extends State<AddressBook> {
   Widget _buildPeersViews() {
     return Expanded(
       child: Align(
-          alignment: Alignment.topLeft,
+          alignment: AlignmentDirectional.topStart,
           child: AddressBookPeersView(
             menuPadding: widget.menuPadding,
           )),
@@ -625,7 +625,7 @@ class _AddressBookState extends State<AddressBook> {
                     )),
                 if (gFFI.abModel.currentAbTags.isNotEmpty)
                   Align(
-                    alignment: Alignment.centerLeft,
+                    alignment: AlignmentDirectional.centerStart,
                     child: Text(
                       translate('Tags'),
                       style: style,
@@ -633,7 +633,7 @@ class _AddressBookState extends State<AddressBook> {
                   ).marginOnly(top: 8, bottom: marginBottom),
                 if (gFFI.abModel.currentAbTags.isNotEmpty)
                   Align(
-                    alignment: Alignment.centerLeft,
+                    alignment: AlignmentDirectional.centerStart,
                     child: Wrap(
                       children: tags
                           .map((e) => AddressBookTag(

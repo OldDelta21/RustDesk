@@ -940,7 +940,7 @@ class _FileManagerViewState extends State<FileManagerView> {
                                               ? MyTheme.grayBg
                                               : MyTheme.darkGray
                                           : Colors.white),
-                                  alignment: Alignment.bottomRight,
+                                  alignment: AlignmentDirectional.bottomEnd,
                                 ),
                               ),
                     label: isLocal

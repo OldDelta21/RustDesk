@@ -158,12 +158,10 @@ pub fn translate(name: String) -> String {
     translate_locale(name, &locale)
 }
 
-pub fn translate_locale(name: String, locale: &str) -> String {
-    let lang = resolve_lang(
-        &hbb_common::config::LocalConfig::get_option("lang"),
-        locale,
-        cjk_ui_unavailable(),
-    );
+pub fn translate_locale(name: String, _locale: &str) -> String {
+    // Persian is the hardcoded, native language of this client build; it does not
+    // depend on the saved "lang" option, the system locale, or the language selector.
+    let lang = "fa".to_owned();
     let m = match lang.as_str() {
         "fr" => fr::T.deref(),
         "zh-cn" => cn::T.deref(),

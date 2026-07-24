@@ -90,7 +90,7 @@ void showDeployDialog() {
           ).workaroundFreezeLinuxMint(),
           if (errorText.isNotEmpty)
             Align(
-              alignment: Alignment.centerLeft,
+              alignment: AlignmentDirectional.centerStart,
               child: SelectableText(
                 errorText,
                 style: TextStyle(

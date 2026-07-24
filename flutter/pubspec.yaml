@@ -1,5 +1,5 @@
 name: flutter_hbb
-description: Your Remote Desktop Software
+description: MyDesk Remote Desktop Software
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -172,6 +172,13 @@ flutter:
     - family: More
       fonts:
         - asset: assets/more.ttf
+    - family: IranSans
+      fonts:
+        - asset: assets/fonts/IRANSansWeb.ttf
+        - asset: assets/fonts/IRANSansWeb_Bold.ttf
+          weight: 700
+        - asset: assets/fonts/IRANSansWeb_Light.ttf
+          weight: 300
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

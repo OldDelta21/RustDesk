@@ -165,14 +165,14 @@ class _DesktopSettingsCardState extends State<DesktopSettingsCard> {
 
   Widget author() {
     return Align(
-      alignment: Alignment.centerLeft,
+      alignment: AlignmentDirectional.centerStart,
       child: Text(plugin.meta.author),
     );
   }
 
   Widget description() {
     return Align(
-      alignment: Alignment.centerLeft,
+      alignment: AlignmentDirectional.centerStart,
       child: Text(plugin.meta.description),
     );
   }

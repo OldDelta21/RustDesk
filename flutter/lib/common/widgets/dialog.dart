@@ -441,7 +441,7 @@ class DialogTextField extends StatelessWidget {
               ),
               if (errorText != null)
                 Align(
-                  alignment: Alignment.centerLeft,
+                  alignment: AlignmentDirectional.centerStart,
                   child: SelectableText(
                     errorText!,
                     style: TextStyle(
@@ -927,7 +927,7 @@ _connectDialog(
       return Column(
         children: [
           Align(
-            alignment: Alignment.centerLeft,
+            alignment: AlignmentDirectional.centerStart,
             child: Text(
               text,
               maxLines: 3,
@@ -973,7 +973,7 @@ _connectDialog(
           ),
           if (errUsername.value.isNotEmpty)
             Align(
-              alignment: Alignment.centerLeft,
+              alignment: AlignmentDirectional.centerStart,
               child: SelectableText(
                 errUsername.value,
                 style: TextStyle(
@@ -1462,7 +1462,7 @@ showSetOSAccount(
       return Column(
         children: [
           Align(
-            alignment: Alignment.centerLeft,
+            alignment: AlignmentDirectional.centerStart,
             child: Text(
               text,
               maxLines: 3,

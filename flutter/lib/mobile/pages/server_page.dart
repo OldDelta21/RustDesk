@@ -319,8 +319,8 @@ class ScamWarningDialogState extends State<ScamWarningDialog> {
           child: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                begin: Alignment.topRight,
-                end: Alignment.bottomLeft,
+                begin: AlignmentDirectional.topEnd,
+                end: AlignmentDirectional.bottomStart,
                 colors: [
                   Color(0xffe242bc),
                   Color(0xfff4727c),
@@ -754,7 +754,7 @@ class ConnectionManager extends StatelessWidget {
 
     if (buttons.length == 1) {
       return Container(
-        alignment: Alignment.centerRight,
+        alignment: AlignmentDirectional.centerEnd,
         child: disconnectButton,
       );
     } else {

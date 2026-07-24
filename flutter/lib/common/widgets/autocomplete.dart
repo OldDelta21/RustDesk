@@ -389,7 +389,7 @@ class AutocompletePeerTileState extends State<AutocompletePeerTile> {
                                                         : Container(),
                                                   ])),
                                               Align(
-                                                alignment: Alignment.centerLeft,
+                                                alignment: AlignmentDirectional.centerStart,
                                                 child: Text(
                                                   name,
                                                   style: greyStyle,

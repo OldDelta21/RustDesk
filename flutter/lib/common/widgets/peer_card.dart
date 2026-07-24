@@ -198,7 +198,7 @@ class _PeerCardState extends State<_PeerCard>
                               message: name,
                               waitDuration: const Duration(seconds: 1),
                               child: Align(
-                                alignment: Alignment.centerLeft,
+                                alignment: AlignmentDirectional.centerStart,
                                 child: Text(
                                   name,
                                   style: isPortrait ? null : greyStyle,
@@ -214,7 +214,7 @@ class _PeerCardState extends State<_PeerCard>
                                 message: peer.note,
                                 waitDuration: const Duration(seconds: 1),
                                 child: Align(
-                                  alignment: Alignment.centerLeft,
+                                  alignment: AlignmentDirectional.centerStart,
                                   child: Text(
                                     peer.note,
                                     style: isPortrait ? null : greyStyle,
@@ -642,7 +642,7 @@ abstract class BasePeerCard extends StatelessWidget {
               ),
               Expanded(
                   child: Align(
-                alignment: Alignment.centerRight,
+                alignment: AlignmentDirectional.centerEnd,
                 child: Transform.scale(
                     scale: 0.8,
                     child: IconButton(
@@ -792,7 +792,7 @@ abstract class BasePeerCard extends StatelessWidget {
           ),
           Expanded(
               child: Align(
-            alignment: Alignment.centerRight,
+            alignment: AlignmentDirectional.centerEnd,
             child: Transform.scale(
               scale: 0.8,
               child: Icon(Icons.delete_forever, color: Colors.red),
@@ -872,7 +872,7 @@ abstract class BasePeerCard extends StatelessWidget {
           ),
           Expanded(
               child: Align(
-            alignment: Alignment.centerRight,
+            alignment: AlignmentDirectional.centerEnd,
             child: Transform.scale(
               scale: 0.8,
               child: Icon(Icons.star_outline),
@@ -907,7 +907,7 @@ abstract class BasePeerCard extends StatelessWidget {
           ),
           Expanded(
               child: Align(
-            alignment: Alignment.centerRight,
+            alignment: AlignmentDirectional.centerEnd,
             child: Transform.scale(
               scale: 0.8,
               child: Icon(Icons.star),

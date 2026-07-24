@@ -374,6 +374,7 @@ class MyTheme {
   static ThemeData lightTheme = ThemeData(
     // https://stackoverflow.com/questions/77537315/after-upgrading-to-flutter-3-16-the-app-bar-background-color-button-size-and
     useMaterial3: false,
+    fontFamily: 'IranSans',
     brightness: Brightness.light,
     hoverColor: Color.fromARGB(255, 224, 224, 224),
     scaffoldBackgroundColor: Colors.white,
@@ -472,6 +473,7 @@ class MyTheme {
   );
   static ThemeData darkTheme = ThemeData(
     useMaterial3: false,
+    fontFamily: 'IranSans',
     brightness: Brightness.dark,
     hoverColor: Color.fromARGB(255, 45, 46, 53),
     scaffoldBackgroundColor: Color(0xFF18191E),
@@ -2858,7 +2860,7 @@ Future<void> onActiveWindowChanged() async {
     } catch (err) {
       debugPrintStack(label: "$err");
     } finally {
-      debugPrint("Start closing RustDesk...");
+      debugPrint("Start closing MyDesk...");
       await windowManager.setPreventClose(false);
       await windowManager.close();
       if (isMacOS) {
@@ -3075,7 +3077,7 @@ Future<void> updateSystemWindowTheme() async {
 ///
 /// Note: not found a general solution for rust based AVFoundation bingding.
 /// [AVFoundation] crate has compile error.
-const kMacOSPermChannel = MethodChannel("org.rustdesk.rustdesk/host");
+const kMacOSPermChannel = MethodChannel("org.mydesk.mydesk/host");
 
 enum PermissionAuthorizeType {
   undetermined,
@@ -3272,7 +3274,7 @@ Widget buildErrorBanner(BuildContext context,
               ).marginAll(4),
               Flexible(
                 child: Align(
-                    alignment: Alignment.centerLeft,
+                    alignment: AlignmentDirectional.centerStart,
                     child: Tooltip(
                       message: translate(err.value),
                       child: SelectableText(
@@ -4121,14 +4123,14 @@ Widget workaroundWindowBorder(BuildContext context, Widget child) {
   if (kWindowType == WindowType.Main && !isLight) {
     borders.addAll([
       getBorderWidget(Align(
-        alignment: Alignment.topLeft,
+        alignment: AlignmentDirectional.topStart,
         child: Container(
           color: borderColor,
           width: width,
         ),
       )),
       getBorderWidget(Align(
-        alignment: Alignment.topRight,
+        alignment: AlignmentDirectional.topEnd,
         child: Container(
           color: borderColor,
           width: width,

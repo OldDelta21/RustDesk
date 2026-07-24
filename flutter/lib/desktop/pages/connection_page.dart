@@ -145,7 +145,7 @@ class _OnlineStatusWidgetState extends State<OnlineStatusWidget> {
                 basicWidget(),
                 Align(
                         child: startServiceWidget(),
-                        alignment: Alignment.centerLeft)
+                        alignment: AlignmentDirectional.centerStart)
                     .marginOnly(top: 2.0, left: 22.0),
               ],
             )
@@ -464,7 +464,7 @@ class _ConnectionPageState extends State<ConnectionPage>
                     maxHeight = maxHeight.clamp(0, 200);
 
                     return Align(
-                      alignment: Alignment.topLeft,
+                      alignment: AlignmentDirectional.topStart,
                       child: Container(
                           decoration: BoxDecoration(
                             boxShadow: [

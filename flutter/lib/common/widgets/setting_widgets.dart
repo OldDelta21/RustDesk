@@ -99,7 +99,7 @@ customImageQualityWidget(
               children: [
                 Expanded(
                   child: Align(
-                    alignment: Alignment.centerRight,
+                    alignment: AlignmentDirectional.centerEnd,
                     child: Checkbox(
                       value: moreQualityChecked.value,
                       onChanged: onMoreChanged,

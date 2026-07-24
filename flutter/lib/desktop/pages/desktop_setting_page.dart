@@ -2276,14 +2276,14 @@ class __PrinterState extends State<_Printer> {
 
     Widget tipOsNotSupported() {
       return Align(
-        alignment: Alignment.topLeft,
+        alignment: AlignmentDirectional.topStart,
         child: Text(translate('printer-os-requirement-tip')),
       ).marginOnly(left: _kCardLeftMargin);
     }
 
     Widget tipClientNotInstalled() {
       return Align(
-        alignment: Alignment.topLeft,
+        alignment: AlignmentDirectional.topStart,
         child:
             Text(translate('printer-requires-installed-{$appName}-client-tip')),
       ).marginOnly(left: _kCardLeftMargin);
@@ -2304,7 +2304,7 @@ class __PrinterState extends State<_Printer> {
           () => failedMsg.value.isNotEmpty
               ? Offstage()
               : Align(
-                  alignment: Alignment.topLeft,
+                  alignment: AlignmentDirectional.topStart,
                   child: Text(translate('printer-{$appName}-not-installed-tip'))
                       .marginOnly(bottom: 10.0),
                 ),
@@ -2313,7 +2313,7 @@ class __PrinterState extends State<_Printer> {
           () => failedMsg.value.isEmpty
               ? Offstage()
               : Align(
-                  alignment: Alignment.topLeft,
+                  alignment: AlignmentDirectional.topStart,
                   child: Text(failedMsg.value,
                           style: DefaultTextStyle.of(context)
                               .style
@@ -2329,7 +2329,7 @@ class __PrinterState extends State<_Printer> {
 
     Widget tipReady() {
       return Align(
-        alignment: Alignment.topLeft,
+        alignment: AlignmentDirectional.topStart,
         child: Text(translate('printer-{$appName}-ready-tip')),
       ).marginOnly(left: _kCardLeftMargin);
     }
@@ -2782,7 +2782,7 @@ class _WaylandCardState extends State<WaylandCard> {
         () => _clearShortcutsInhibitorFailedMsg.value.isEmpty
             ? Offstage()
             : Align(
-                alignment: Alignment.topLeft,
+                alignment: AlignmentDirectional.topStart,
                 child: Text(_clearShortcutsInhibitorFailedMsg.value,
                         style: DefaultTextStyle.of(context)
                             .style
@@ -3081,7 +3081,7 @@ void changeSocks5Proxy() async {
                   ConstrainedBox(
                     constraints: const BoxConstraints(minWidth: 140),
                     child: Align(
-                        alignment: Alignment.centerRight,
+                        alignment: AlignmentDirectional.centerEnd,
                         child: Row(
                           children: [
                             Text(

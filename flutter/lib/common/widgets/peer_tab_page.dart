@@ -741,7 +741,7 @@ class _PeerSearchBarState extends State<PeerSearchBar> {
                     ),
                     // Icon(Icons.close),
                     IconButton(
-                      alignment: Alignment.centerRight,
+                      alignment: AlignmentDirectional.centerEnd,
                       padding: const EdgeInsets.only(right: 2),
                       onPressed: () {
                         setState(() {

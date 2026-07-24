@@ -726,7 +726,7 @@ class BottomSheetBody extends StatelessWidget {
       builder: (BuildContext context) {
         return Container(
             height: 65,
-            alignment: Alignment.centerLeft,
+            alignment: AlignmentDirectional.centerStart,
             decoration: BoxDecoration(
                 color: MyTheme.accent50,
                 borderRadius: BorderRadius.vertical(top: Radius.circular(10))),

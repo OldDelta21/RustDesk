@@ -152,7 +152,7 @@ class _DesktopHomePageState extends State<DesktopHomePage>
                 bottom: 6,
                 left: 12,
                 child: Align(
-                  alignment: Alignment.centerLeft,
+                  alignment: AlignmentDirectional.centerStart,
                   child: InkWell(
                     child: Obx(
                       () => Icon(
@@ -401,7 +401,7 @@ class _DesktopHomePageState extends State<DesktopHomePage>
             children: [
               if (!isOutgoingOnly)
                 Align(
-                  alignment: Alignment.centerLeft,
+                  alignment: AlignmentDirectional.centerStart,
                   child: Text(
                     translate("Your Desktop"),
                     style: Theme.of(context).textTheme.titleLarge,
@@ -557,7 +557,7 @@ class _DesktopHomePageState extends State<DesktopHomePage>
     }
     if (bind.isIncomingOnly()) {
       return Align(
-        alignment: Alignment.centerRight,
+        alignment: AlignmentDirectional.centerEnd,
         child: OutlinedButton(
           onPressed: () {
             SystemNavigator.pop(); // Close the application
@@ -607,8 +607,8 @@ class _DesktopHomePageState extends State<DesktopHomePage>
           child: Container(
               decoration: BoxDecoration(
                   gradient: LinearGradient(
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
+                begin: AlignmentDirectional.centerStart,
+                end: AlignmentDirectional.centerEnd,
                 colors: [
                   Color.fromARGB(255, 226, 66, 188),
                   Color.fromARGB(255, 244, 114, 124),
@@ -1115,10 +1115,10 @@ void setPasswordDialog({VoidCallback? notEmptyCallback}) async {
         if (!isDesktop && !isWebDesktop && localPasswordSet) {
           return [
             Align(
-              alignment: Alignment.centerRight,
+              alignment: AlignmentDirectional.centerEnd,
               child: FittedBox(
                 fit: BoxFit.scaleDown,
-                alignment: Alignment.centerRight,
+                alignment: AlignmentDirectional.centerEnd,
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
