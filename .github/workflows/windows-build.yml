@@ -78,6 +78,12 @@ jobs:
           cargo install cargo-expand --version ${{ env.CARGO_EXPAND_VERSION }} --locked
           cargo install flutter_rust_bridge_codegen --version ${{ env.FLUTTER_RUST_BRIDGE_VERSION }} --features "uuid" --locked
 
+      - name: flutter pub get
+        shell: bash
+        run: |
+          cd flutter
+          flutter pub get
+
       - name: Run flutter_rust_bridge_codegen
         shell: bash
         run: |
@@ -85,12 +91,6 @@ jobs:
             --rust-input ./src/flutter_ffi.rs \
             --dart-output ./flutter/lib/generated_bridge.dart \
             --c-output ./flutter/macos/Runner/bridge_generated.h
-
-      - name: flutter pub get
-        shell: bash
-        run: |
-          cd flutter
-          flutter pub get
 
       # --- Build the Rust core (librustdesk.dll) and the Flutter Windows client.
       #     build.py wraps: cargo build --lib --release (+ the virtual-display
