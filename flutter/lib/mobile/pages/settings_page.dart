@@ -279,11 +279,6 @@ class _SettingsState extends State<SettingsPage> with WidgetsBindingObserver {
     final customClientSection = CustomSettingsSection(
         child: Column(
       children: [
-        if (bind.isCustomClient())
-          Align(
-            alignment: Alignment.center,
-            child: loadPowered(context),
-          ),
         Align(
           alignment: Alignment.center,
           child: loadLogo(),
@@ -1093,7 +1088,7 @@ void showThemeSettings(OverlayDialogManager dialogManager) async {
 void showAbout(OverlayDialogManager dialogManager) {
   dialogManager.show((setState, close, context) {
     return CustomAlertDialog(
-      title: Text(translate('About RustDesk')),
+      title: Text(translate('About WiBesk')),
       content: Wrap(direction: Axis.vertical, spacing: 12, children: [
         Text('Version: $version'),
         InkWell(

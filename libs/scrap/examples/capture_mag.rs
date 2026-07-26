@@ -37,7 +37,7 @@ fn record(i: usize) {
         let mut capture_mag = CapturerMag::new(display.origin(), display.width(), display.height())
             .expect("Couldn't begin capture.");
         let wnd_cls = "";
-        let wnd_name = "MyDeskPrivacyWindow";
+        let wnd_name = "WiBeskPrivacyWindow";
         if false == capture_mag.exclude(wnd_cls, wnd_name).unwrap() {
             println!("No window found for cls {} name {}", wnd_cls, wnd_name);
         } else {
@@ -76,7 +76,7 @@ fn record(i: usize) {
         let mut capture_mag = CapturerMag::new(display.origin(), display.width(), display.height())
             .expect("Couldn't begin capture.");
         let wnd_cls = "";
-        let wnd_title = "MyDeskPrivacyWindow";
+        let wnd_title = "WiBeskPrivacyWindow";
         if false == capture_mag.exclude(wnd_cls, wnd_title).unwrap() {
             println!("No window found for cls {} title {}", wnd_cls, wnd_title);
         } else {

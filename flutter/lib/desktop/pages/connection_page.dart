@@ -412,36 +412,39 @@ class _ConnectionPageState extends State<ConnectionPage>
                   ) {
                     updateTextAndPreserveSelection(
                         fieldTextEditingController, _idController.text);
-                    return Obx(() => TextField(
-                          autocorrect: false,
-                          enableSuggestions: false,
-                          keyboardType: TextInputType.visiblePassword,
-                          focusNode: fieldFocusNode,
-                          style: const TextStyle(
-                            fontFamily: 'WorkSans',
-                            fontSize: 22,
-                            height: 1.4,
-                          ),
-                          maxLines: 1,
-                          cursorColor:
-                              Theme.of(context).textTheme.titleLarge?.color,
-                          decoration: InputDecoration(
-                              filled: false,
-                              counterText: '',
-                              hintText: _idInputFocused.value
-                                  ? null
-                                  : translate('Enter Remote ID'),
-                              contentPadding: const EdgeInsets.symmetric(
-                                  horizontal: 15, vertical: 13)),
-                          controller: fieldTextEditingController,
-                          inputFormatters: [IDTextInputFormatter()],
-                          onChanged: (v) {
-                            _idController.id = v;
-                          },
-                          onSubmitted: (_) {
-                            onConnect();
-                          },
-                        ).workaroundFreezeLinuxMint());
+                    return Obx(() => Directionality(
+                          textDirection: TextDirection.ltr,
+                          child: TextField(
+                            autocorrect: false,
+                            enableSuggestions: false,
+                            keyboardType: TextInputType.visiblePassword,
+                            focusNode: fieldFocusNode,
+                            style: const TextStyle(
+                              fontFamily: 'WorkSans',
+                              fontSize: 22,
+                              height: 1.4,
+                            ),
+                            maxLines: 1,
+                            cursorColor:
+                                Theme.of(context).textTheme.titleLarge?.color,
+                            decoration: InputDecoration(
+                                filled: false,
+                                counterText: '',
+                                hintText: _idInputFocused.value
+                                    ? null
+                                    : translate('Enter Remote ID'),
+                                contentPadding: const EdgeInsets.symmetric(
+                                    horizontal: 15, vertical: 13)),
+                            controller: fieldTextEditingController,
+                            inputFormatters: [IDTextInputFormatter()],
+                            onChanged: (v) {
+                              _idController.id = v;
+                            },
+                            onSubmitted: (_) {
+                              onConnect();
+                            },
+                          ).workaroundFreezeLinuxMint(),
+                        ));
                   },
                   onSelected: (option) {
                     setState(() {

@@ -219,43 +219,46 @@ class _ConnectionPageState extends State<ConnectionPage> {
                         VoidCallback onFieldSubmitted) {
                       updateTextAndPreserveSelection(
                           fieldTextEditingController, _idController.text);
-                      return AutoSizeTextField(
-                        controller: fieldTextEditingController,
-                        focusNode: fieldFocusNode,
-                        minFontSize: 18,
-                        autocorrect: false,
-                        enableSuggestions: false,
-                        keyboardType: TextInputType.visiblePassword,
-                        // keyboardType: TextInputType.number,
-                        onChanged: (String text) {
-                          _idController.id = text;
-                        },
-                        style: const TextStyle(
-                          fontFamily: 'WorkSans',
-                          fontWeight: FontWeight.bold,
-                          fontSize: 30,
-                          color: MyTheme.idColor,
-                        ),
-                        decoration: InputDecoration(
-                          labelText: translate('Remote ID'),
-                          // hintText: 'Enter your remote ID',
-                          border: InputBorder.none,
-                          helperStyle: const TextStyle(
+                      return Directionality(
+                        textDirection: TextDirection.ltr,
+                        child: AutoSizeTextField(
+                          controller: fieldTextEditingController,
+                          focusNode: fieldFocusNode,
+                          minFontSize: 18,
+                          autocorrect: false,
+                          enableSuggestions: false,
+                          keyboardType: TextInputType.visiblePassword,
+                          // keyboardType: TextInputType.number,
+                          onChanged: (String text) {
+                            _idController.id = text;
+                          },
+                          style: const TextStyle(
+                            fontFamily: 'WorkSans',
                             fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                            color: MyTheme.darkGray,
+                            fontSize: 30,
+                            color: MyTheme.idColor,
                           ),
-                          labelStyle: const TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 16,
-                            letterSpacing: 0.2,
-                            color: MyTheme.darkGray,
+                          decoration: InputDecoration(
+                            labelText: translate('Remote ID'),
+                            // hintText: 'Enter your remote ID',
+                            border: InputBorder.none,
+                            helperStyle: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                              color: MyTheme.darkGray,
+                            ),
+                            labelStyle: const TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
+                              letterSpacing: 0.2,
+                              color: MyTheme.darkGray,
+                            ),
                           ),
+                          inputFormatters: [IDTextInputFormatter()],
+                          onSubmitted: (_) {
+                            onConnect();
+                          },
                         ),
-                        inputFormatters: [IDTextInputFormatter()],
-                        onSubmitted: (_) {
-                          onConnect();
-                        },
                       );
                     },
                     onSelected: (option) {

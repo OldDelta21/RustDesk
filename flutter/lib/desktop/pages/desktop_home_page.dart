@@ -64,9 +64,11 @@ class _DesktopHomePageState extends State<DesktopHomePage>
         child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        buildLeftPane(context),
-        if (!isIncomingOnly) const VerticalDivider(width: 1),
+        // WiBesk layout: "Control Remote Desktop" panel leads, "Your Desktop"
+        // panel trails, swapped from the upstream left/right arrangement.
         if (!isIncomingOnly) Expanded(child: buildRightPane(context)),
+        if (!isIncomingOnly) const VerticalDivider(width: 1),
+        buildLeftPane(context),
       ],
     ));
   }
@@ -81,11 +83,6 @@ class _DesktopHomePageState extends State<DesktopHomePage>
     final isOutgoingOnly = bind.isOutgoingOnly();
     final children = <Widget>[
       if (!isOutgoingOnly) buildPresetPasswordWarning(),
-      if (bind.isCustomClient())
-        Align(
-          alignment: Alignment.center,
-          child: loadPowered(context),
-        ),
       Align(
         alignment: Alignment.center,
         child: loadLogo(),
@@ -233,17 +230,21 @@ class _DesktopHomePageState extends State<DesktopHomePage>
                             ClipboardData(text: model.serverId.text));
                         showToast(translate("Copied"));
                       },
-                      child: TextFormField(
-                        controller: model.serverId,
-                        readOnly: true,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          contentPadding: EdgeInsets.only(top: 10, bottom: 10),
-                        ),
-                        style: TextStyle(
-                          fontSize: 22,
-                        ),
-                      ).workaroundFreezeLinuxMint(),
+                      child: Directionality(
+                        textDirection: TextDirection.ltr,
+                        child: TextFormField(
+                          controller: model.serverId,
+                          readOnly: true,
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            contentPadding:
+                                EdgeInsets.only(top: 10, bottom: 10),
+                          ),
+                          style: TextStyle(
+                            fontSize: 22,
+                          ),
+                        ).workaroundFreezeLinuxMint(),
+                      ),
                     ),
                   )
                 ],
@@ -330,16 +331,19 @@ class _DesktopHomePageState extends State<DesktopHomePage>
                               showToast(translate("Copied"));
                             }
                           },
-                          child: TextFormField(
-                            controller: model.serverPasswd,
-                            readOnly: true,
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              contentPadding:
-                                  EdgeInsets.only(top: 14, bottom: 10),
-                            ),
-                            style: TextStyle(fontSize: 15),
-                          ).workaroundFreezeLinuxMint(),
+                          child: Directionality(
+                            textDirection: TextDirection.ltr,
+                            child: TextFormField(
+                              controller: model.serverPasswd,
+                              readOnly: true,
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                contentPadding:
+                                    EdgeInsets.only(top: 14, bottom: 10),
+                              ),
+                              style: TextStyle(fontSize: 15),
+                            ).workaroundFreezeLinuxMint(),
+                          ),
                         ),
                       ),
                       if (showOneTime)

@@ -641,7 +641,7 @@ class _DesktopTabState extends State<DesktopTab>
                         Offstage(
                             offstage: !showTitle,
                             child: const Text(
-                              "MyDesk",
+                              "WiBesk",
                               style: TextStyle(fontSize: 13),
                             ).marginOnly(left: 2))
                       ]).marginOnly(
@@ -1469,12 +1469,12 @@ class TabbarTheme extends ThemeExtension<TabbarTheme> {
 
   static const dark = TabbarTheme(
       selectedTabIconColor: MyTheme.accent,
-      unSelectedTabIconColor: Color.fromARGB(255, 30, 65, 98),
+      unSelectedTabIconColor: Color.fromARGB(255, 58, 74, 99),
       selectedTextColor: Colors.white,
       unSelectedTextColor: Color.fromARGB(255, 192, 192, 192),
       selectedIconColor: Color.fromARGB(255, 192, 192, 192),
       unSelectedIconColor: Color.fromARGB(255, 255, 255, 255),
-      dividerColor: Color.fromARGB(255, 64, 64, 64),
+      dividerColor: Color.fromARGB(255, 37, 50, 74),
       hoverColor: Colors.black26,
       closeHoverColor: Colors.black,
       selectedTabBackgroundColor: Colors.black26);

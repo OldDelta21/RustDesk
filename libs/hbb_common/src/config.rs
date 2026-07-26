@@ -69,7 +69,7 @@ lazy_static::lazy_static! {
     static ref ONLINE: Mutex<HashMap<String, i64>> = Default::default();
     pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new("".to_owned());
     pub static ref EXE_RENDEZVOUS_SERVER: RwLock<String> = Default::default();
-    pub static ref APP_NAME: RwLock<String> = RwLock::new("MyDesk".to_owned());
+    pub static ref APP_NAME: RwLock<String> = RwLock::new("WiBesk".to_owned());
     static ref KEY_PAIR: Mutex<Option<KeyPair>> = Default::default();
     static ref USER_DEFAULT_CONFIG: RwLock<(UserDefaultConfig, Instant)> = RwLock::new((UserDefaultConfig::load(), Instant::now()));
     pub static ref NEW_STORED_PEER_CONFIG: Mutex<HashSet<String>> = Default::default();
@@ -121,7 +121,7 @@ const CHARS: &[char] = &[
 // Generate a keypair with `rustdesk-utils genkeypair` on your server and put the public
 // key here; the default is intentionally invalid so this build won't silently talk to
 // a real host until it's configured.
-pub const RENDEZVOUS_SERVERS: &[&str] = &["rs.mydesk.example.com"];
+pub const RENDEZVOUS_SERVERS: &[&str] = &["rs.wibesk.example.com"];
 pub const RS_PUB_KEY: &str = "REPLACE_WITH_YOUR_SERVER_PUBLIC_KEY";
 
 pub const RENDEZVOUS_PORT: i32 = 21116;

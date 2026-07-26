@@ -183,14 +183,14 @@ class ColorThemeExtension extends ThemeExtension<ColorThemeExtension> {
   );
 
   static final dark = ColorThemeExtension(
-    border: Color(0xFF555555),
-    border2: Color(0xFFE5E5E5),
+    border: Color(0xFF25324A),
+    border2: Color(0xFF3A4A63),
     border3: Colors.white24,
-    highlight: Color(0xFF3F3F3F),
+    highlight: Color(0xFF1C2740),
     drag_indicator: Colors.grey,
-    shadow: Colors.grey,
+    shadow: Colors.black,
     errorBannerBg: Color(0xFF470F2D),
-    me: Colors.greenAccent,
+    me: Color(0xFF2DD4BF),
     toastBg: Colors.white.withOpacity(0.6),
     toastText: Colors.black,
     divider: Colors.white38,
@@ -251,17 +251,23 @@ class MyTheme {
   MyTheme._();
 
   static const Color grayBg = Color(0xFFEFEFF2);
-  static const Color accent = Color(0xFF0071FF);
-  static const Color accent50 = Color(0x770071FF);
-  static const Color accent80 = Color(0xAA0071FF);
-  static const Color canvasColor = Color(0xFF212121);
+  static const Color accent = Color(0xFF14B8A6);
+  static const Color accent50 = Color(0x7714B8A6);
+  static const Color accent80 = Color(0xAA14B8A6);
+  static const Color canvasColor = Color(0xFF0F172A);
   static const Color border = Color(0xFFCCCCCC);
-  static const Color idColor = Color(0xFF00B6F0);
+  static const Color idColor = Color(0xFF2DD4BF);
   static const Color darkGray = Color.fromARGB(255, 148, 148, 148);
   static const Color cmIdColor = Color(0xFF21790B);
   static const Color dark = Colors.black87;
-  static const Color button = Color(0xFF2C8CFF);
+  static const Color button = Color(0xFF14B8A6);
   static const Color hoverBorder = Color(0xFF999999);
+
+  // WiBesk slate palette (dark theme)
+  static const Color slate900 = Color(0xFF0B1120);
+  static const Color slate800 = Color(0xFF161E2E);
+  static const Color slate700 = Color(0xFF25324A);
+  static const Color slate600 = Color(0xFF3A4A63);
 
   // ListTile
   static const ListTileThemeData listTileTheme = ListTileThemeData(
@@ -475,9 +481,9 @@ class MyTheme {
     useMaterial3: false,
     fontFamily: 'IranSans',
     brightness: Brightness.dark,
-    hoverColor: Color.fromARGB(255, 45, 46, 53),
-    scaffoldBackgroundColor: Color(0xFF18191E),
-    dialogBackgroundColor: Color(0xFF18191E),
+    hoverColor: slate700,
+    scaffoldBackgroundColor: slate900,
+    dialogBackgroundColor: slate900,
     appBarTheme: AppBarTheme(
       shadowColor: Colors.transparent,
     ),
@@ -487,14 +493,14 @@ class MyTheme {
         borderRadius: BorderRadius.circular(18.0),
         side: BorderSide(
           width: 1,
-          color: Color(0xFF24252B),
+          color: slate700,
         ),
       ),
     ),
     scrollbarTheme: scrollbarThemeDark,
     inputDecorationTheme: (isDesktop || isWebDesktop)
         ? InputDecorationTheme(
-            fillColor: Color(0xFF24252B),
+            fillColor: slate800,
             filled: true,
             isDense: true,
             border: OutlineInputBorder(
@@ -513,7 +519,7 @@ class MyTheme {
         color: accent80,
       ),
     ),
-    cardColor: Color(0xFF24252B),
+    cardColor: slate800,
     visualDensity: VisualDensity.adaptivePlatformDensity,
     tabBarTheme: const TabBarTheme(
       labelColor: Colors.white70,
@@ -547,8 +553,8 @@ class MyTheme {
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
-        backgroundColor: Color(0xFF24252B),
-        side: BorderSide(color: Colors.white12, width: 0.5),
+        backgroundColor: slate800,
+        side: BorderSide(color: slate600, width: 0.5),
         disabledForegroundColor: Colors.white70,
         foregroundColor: Colors.white70,
         shape: RoundedRectangleBorder(
@@ -561,16 +567,17 @@ class MyTheme {
     checkboxTheme: checkboxTheme,
     listTileTheme: listTileTheme,
     menuBarTheme: MenuBarThemeData(
-        style: MenuStyle(
-            backgroundColor: MaterialStatePropertyAll(Color(0xFF121212)))),
+        style: MenuStyle(backgroundColor: MaterialStatePropertyAll(slate900))),
     colorScheme: ColorScheme.dark(
-      primary: Colors.blue,
+      primary: accent,
       secondary: accent,
-      background: Color(0xFF24252B),
+      background: slate800,
+      surface: slate800,
     ),
     popupMenuTheme: PopupMenuThemeData(
+        color: slate800,
         shape: RoundedRectangleBorder(
-      side: BorderSide(color: Colors.white24),
+      side: BorderSide(color: slate600),
       borderRadius: BorderRadius.all(Radius.circular(8.0)),
     )),
   ).copyWith(
@@ -1325,7 +1332,7 @@ Color? _msgboxColor(String type) {
   if (type.contains("error") || type == "re-input-password") {
     return Color(0xFFE04F5F);
   }
-  return Color(0xFF2C8CFF);
+  return MyTheme.accent;
 }
 
 Widget msgboxIcon(String type) {
@@ -2860,7 +2867,7 @@ Future<void> onActiveWindowChanged() async {
     } catch (err) {
       debugPrintStack(label: "$err");
     } finally {
-      debugPrint("Start closing MyDesk...");
+      debugPrint("Start closing WiBesk...");
       await windowManager.setPreventClose(false);
       await windowManager.close();
       if (isMacOS) {
@@ -3077,7 +3084,7 @@ Future<void> updateSystemWindowTheme() async {
 ///
 /// Note: not found a general solution for rust based AVFoundation bingding.
 /// [AVFoundation] crate has compile error.
-const kMacOSPermChannel = MethodChannel("org.mydesk.mydesk/host");
+const kMacOSPermChannel = MethodChannel("org.wibesk.wibesk/host");
 
 enum PermissionAuthorizeType {
   undetermined,
@@ -3736,30 +3743,6 @@ Color? disabledTextColor(BuildContext context, bool enabled) {
   return enabled
       ? null
       : Theme.of(context).textTheme.titleLarge?.color?.withOpacity(0.6);
-}
-
-Widget loadPowered(BuildContext context) {
-  if (bind.mainGetBuildinOption(key: "hide-powered-by-me") == 'Y') {
-    return SizedBox.shrink();
-  }
-  return MouseRegion(
-    cursor: SystemMouseCursors.click,
-    child: GestureDetector(
-      onTap: () {
-        launchUrl(Uri.parse('https://rustdesk.com'));
-      },
-      child: Opacity(
-          opacity: 0.5,
-          child: Text(
-            translate("powered_by_me"),
-            overflow: TextOverflow.clip,
-            style: Theme.of(context)
-                .textTheme
-                .bodySmall
-                ?.copyWith(fontSize: 9, decoration: TextDecoration.underline),
-          )),
-    ),
-  ).marginOnly(top: 6);
 }
 
 const _kDefaultLogoAsset = 'assets/logo.png';

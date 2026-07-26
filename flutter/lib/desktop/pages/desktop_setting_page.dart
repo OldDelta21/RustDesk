@@ -1361,20 +1361,23 @@ class _SafetyState extends State<_Safety> with AutomaticKeepAliveClientMixin {
               Row(children: [
                 SizedBox(
                   width: 95,
-                  child: TextField(
-                    controller: controller,
-                    enabled: enabled && !locked && !isOptFixed,
-                    onChanged: (_) => applyEnabled.value = true,
-                    inputFormatters: [
-                      FilteringTextInputFormatter.allow(RegExp(
-                          r'^([0-9]|[1-9]\d|[1-9]\d{2}|[1-9]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$')),
-                    ],
-                    decoration: const InputDecoration(
-                      hintText: '21118',
-                      contentPadding:
-                          EdgeInsets.symmetric(vertical: 12, horizontal: 12),
-                    ),
-                  ).workaroundFreezeLinuxMint().marginOnly(right: 15),
+                  child: Directionality(
+                    textDirection: TextDirection.ltr,
+                    child: TextField(
+                      controller: controller,
+                      enabled: enabled && !locked && !isOptFixed,
+                      onChanged: (_) => applyEnabled.value = true,
+                      inputFormatters: [
+                        FilteringTextInputFormatter.allow(RegExp(
+                            r'^([0-9]|[1-9]\d|[1-9]\d{2}|[1-9]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$')),
+                      ],
+                      decoration: const InputDecoration(
+                        hintText: '21118',
+                        contentPadding:
+                            EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+                      ),
+                    ).workaroundFreezeLinuxMint().marginOnly(right: 15),
+                  ),
                 ),
                 Obx(() => ElevatedButton(
                       onPressed: applyEnabled.value &&
@@ -1518,20 +1521,23 @@ class _SafetyState extends State<_Safety> with AutomaticKeepAliveClientMixin {
             Row(children: [
               SizedBox(
                 width: 95,
-                child: TextField(
-                  controller: controller,
-                  enabled: enabled && !locked && !isOptFixed,
-                  onChanged: (_) => applyEnabled.value = true,
-                  inputFormatters: [
-                    FilteringTextInputFormatter.allow(RegExp(
-                        r'^([0-9]|[1-9]\d|[1-9]\d{2}|[1-9]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$')),
-                  ],
-                  decoration: const InputDecoration(
-                    hintText: '10',
-                    contentPadding:
-                        EdgeInsets.symmetric(vertical: 12, horizontal: 12),
-                  ),
-                ).workaroundFreezeLinuxMint().marginOnly(right: 15),
+                child: Directionality(
+                  textDirection: TextDirection.ltr,
+                  child: TextField(
+                    controller: controller,
+                    enabled: enabled && !locked && !isOptFixed,
+                    onChanged: (_) => applyEnabled.value = true,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(RegExp(
+                          r'^([0-9]|[1-9]\d|[1-9]\d{2}|[1-9]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$')),
+                    ],
+                    decoration: const InputDecoration(
+                      hintText: '10',
+                      contentPadding:
+                          EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+                    ),
+                  ).workaroundFreezeLinuxMint().marginOnly(right: 15),
+                ),
               ),
               Obx(() => ElevatedButton(
                     onPressed:
@@ -2430,7 +2436,7 @@ class _AboutState extends State<_About> {
       final scrollController = ScrollController();
       return SingleChildScrollView(
         controller: scrollController,
-        child: _Card(title: translate('About RustDesk'), children: [
+        child: _Card(title: translate('About WiBesk'), children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -3104,18 +3110,21 @@ void changeSocks5Proxy() async {
                         )).marginOnly(right: 10),
                   ),
                 Expanded(
-                  child: TextField(
-                    decoration: InputDecoration(
-                      errorText: proxyMsg.isNotEmpty ? proxyMsg : null,
-                      labelText: isMobile ? translate('Server') : null,
-                      helperText:
-                          isMobile ? translate("default_proxy_tip") : null,
-                      helperMaxLines: isMobile ? 3 : null,
-                    ),
-                    controller: proxyController,
-                    autofocus: true,
-                    enabled: !isOptFixed,
-                  ).workaroundFreezeLinuxMint(),
+                  child: Directionality(
+                    textDirection: TextDirection.ltr,
+                    child: TextField(
+                      decoration: InputDecoration(
+                        errorText: proxyMsg.isNotEmpty ? proxyMsg : null,
+                        labelText: isMobile ? translate('Server') : null,
+                        helperText:
+                            isMobile ? translate("default_proxy_tip") : null,
+                        helperMaxLines: isMobile ? 3 : null,
+                      ),
+                      controller: proxyController,
+                      autofocus: true,
+                      enabled: !isOptFixed,
+                    ).workaroundFreezeLinuxMint(),
+                  ),
                 ),
               ],
             ).marginOnly(bottom: 8),
@@ -3129,13 +3138,16 @@ void changeSocks5Proxy() async {
                         textAlign: TextAlign.right,
                       ).marginOnly(right: 10)),
                 Expanded(
-                  child: TextField(
-                    controller: userController,
-                    decoration: InputDecoration(
-                      labelText: isMobile ? translate('Username') : null,
-                    ),
-                    enabled: !isOptFixed,
-                  ).workaroundFreezeLinuxMint(),
+                  child: Directionality(
+                    textDirection: TextDirection.ltr,
+                    child: TextField(
+                      controller: userController,
+                      decoration: InputDecoration(
+                        labelText: isMobile ? translate('Username') : null,
+                      ),
+                      enabled: !isOptFixed,
+                    ).workaroundFreezeLinuxMint(),
+                  ),
                 ),
               ],
             ).marginOnly(bottom: 8),
@@ -3149,19 +3161,24 @@ void changeSocks5Proxy() async {
                         textAlign: TextAlign.right,
                       ).marginOnly(right: 10)),
                 Expanded(
-                  child: Obx(() => TextField(
-                        obscureText: obscure.value,
-                        decoration: InputDecoration(
-                            labelText: isMobile ? translate('Password') : null,
-                            suffixIcon: IconButton(
-                                onPressed: () => obscure.value = !obscure.value,
-                                icon: Icon(obscure.value
-                                    ? Icons.visibility_off
-                                    : Icons.visibility))),
-                        controller: pwdController,
-                        enabled: !isOptFixed,
-                        maxLength: bind.mainMaxEncryptLen(),
-                      ).workaroundFreezeLinuxMint()),
+                  child: Obx(() => Directionality(
+                        textDirection: TextDirection.ltr,
+                        child: TextField(
+                          obscureText: obscure.value,
+                          decoration: InputDecoration(
+                              labelText:
+                                  isMobile ? translate('Password') : null,
+                              suffixIcon: IconButton(
+                                  onPressed: () =>
+                                      obscure.value = !obscure.value,
+                                  icon: Icon(obscure.value
+                                      ? Icons.visibility_off
+                                      : Icons.visibility))),
+                          controller: pwdController,
+                          enabled: !isOptFixed,
+                          maxLength: bind.mainMaxEncryptLen(),
+                        ).workaroundFreezeLinuxMint(),
+                      )),
                 ),
               ],
             ),

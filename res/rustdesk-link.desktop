@@ -1,11 +1,11 @@
 [Desktop Entry]
-Name=MyDesk
+Name=WiBesk
 NoDisplay=true
-MimeType=x-scheme-handler/mydesk;
-TryExec=rustdesk
-Exec=rustdesk %u
-Icon=rustdesk
+MimeType=x-scheme-handler/wibesk;
+TryExec=wibesk
+Exec=wibesk %u
+Icon=wibesk
 Terminal=false
 Type=Application
 StartupNotify=false
-StartupWMClass=rustdesk
+StartupWMClass=wibesk

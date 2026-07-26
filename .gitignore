@@ -17,6 +17,9 @@ cert.pfx
 *png
 *svg
 *jpg
+# WiBesk branding assets are intentionally committed so CI builds are branded
+!flutter/assets/*.png
+!flutter/assets/*.svg
 sciter.dll
 **pdb
 src/bridge_generated.rs

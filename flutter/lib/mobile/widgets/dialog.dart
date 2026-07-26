@@ -207,7 +207,7 @@ void showServerSettingsWithValue(
   });
 }
 
-TextFormField serverSettingsTextFormField({
+Widget serverSettingsTextFormField({
   required String label,
   required TextEditingController controller,
   required String errorMsg,
@@ -216,23 +216,26 @@ TextFormField serverSettingsTextFormField({
   bool showLabelText = true,
   EdgeInsetsGeometry? contentPadding,
 }) {
-  return TextFormField(
-    controller: controller,
-    decoration: InputDecoration(
-      labelText: showLabelText ? label : null,
-      errorText: errorMsg.isEmpty ? null : errorMsg,
-      contentPadding: contentPadding,
+  return Directionality(
+    textDirection: TextDirection.ltr,
+    child: TextFormField(
+      controller: controller,
+      decoration: InputDecoration(
+        labelText: showLabelText ? label : null,
+        errorText: errorMsg.isEmpty ? null : errorMsg,
+        contentPadding: contentPadding,
+      ),
+      validator: validator,
+      autofocus: autofocus,
+      keyboardType: TextInputType.visiblePassword,
+      textCapitalization: TextCapitalization.none,
+      autocorrect: false,
+      enableSuggestions: false,
+      smartDashesType: SmartDashesType.disabled,
+      smartQuotesType: SmartQuotesType.disabled,
+      enableIMEPersonalizedLearning: false,
+      spellCheckConfiguration: const SpellCheckConfiguration.disabled(),
     ),
-    validator: validator,
-    autofocus: autofocus,
-    keyboardType: TextInputType.visiblePassword,
-    textCapitalization: TextCapitalization.none,
-    autocorrect: false,
-    enableSuggestions: false,
-    smartDashesType: SmartDashesType.disabled,
-    smartQuotesType: SmartQuotesType.disabled,
-    enableIMEPersonalizedLearning: false,
-    spellCheckConfiguration: const SpellCheckConfiguration.disabled(),
   );
 }
 

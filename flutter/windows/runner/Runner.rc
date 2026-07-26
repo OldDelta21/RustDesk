@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "MyDesk Project" "\0"
-            VALUE "FileDescription", "MyDesk Remote Desktop" "\0"
+            VALUE "CompanyName", "WiBesk Project" "\0"
+            VALUE "FileDescription", "WiBesk Remote Desktop" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "mydesk" "\0"
-            VALUE "LegalCopyright", "Copyright © 2026 MyDesk Project. All rights reserved." "\0"
+            VALUE "InternalName", "wibesk" "\0"
+            VALUE "LegalCopyright", "Copyright © 2026 WiBesk Project. All rights reserved." "\0"
             VALUE "OriginalFilename", "rustdesk.exe" "\0"
-            VALUE "ProductName", "MyDesk" "\0"
+            VALUE "ProductName", "WiBesk" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

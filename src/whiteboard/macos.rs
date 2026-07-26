@@ -82,7 +82,7 @@ fn create_windows(event_loop: &EventLoop<(String, CustomEvent)>) -> ResultType<V
         };
 
         let window_builder = WindowBuilder::new()
-            .with_title("MyDesk whiteboard")
+            .with_title("WiBesk whiteboard")
             .with_transparent(true)
             .with_decorations(false)
             .with_position(monitor.position())

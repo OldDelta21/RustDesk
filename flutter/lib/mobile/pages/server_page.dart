@@ -524,9 +524,12 @@ class ServerInfo extends StatelessWidget {
               )
             ]),
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-              Text(
-                model.serverId.value.text,
-                style: textStyleValue,
+              Directionality(
+                textDirection: TextDirection.ltr,
+                child: Text(
+                  model.serverId.value.text,
+                  style: textStyleValue,
+                ),
               ),
               IconButton(
                   visualDensity: VisualDensity.compact,
@@ -545,9 +548,12 @@ class ServerInfo extends StatelessWidget {
               )
             ]),
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-              Text(
-                !showOneTime ? '-' : model.serverPasswd.value.text,
-                style: textStyleValue,
+              Directionality(
+                textDirection: TextDirection.ltr,
+                child: Text(
+                  !showOneTime ? '-' : model.serverPasswd.value.text,
+                  style: textStyleValue,
+                ),
               ),
               !showOneTime
                   ? SizedBox.shrink()

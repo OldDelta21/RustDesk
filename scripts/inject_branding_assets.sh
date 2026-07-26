@@ -2,7 +2,7 @@
 #
 # Drops your own logo/icon files into the exact paths RustDesk's icon and
 # app-logo assets used to occupy, now that they've been removed as part of
-# the MyDesk rebrand. Run from anywhere; paths below are resolved relative
+# the WiBesk rebrand. Run from anywhere; paths below are resolved relative
 # to this script's location, not your current directory.
 #
 # Destinations populated (only for the flags you pass):

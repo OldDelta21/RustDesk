@@ -1081,13 +1081,13 @@ fn get_api_server_(api: String, custom: String) -> String {
         }
     }
     // PLACEHOLDER: point this at your own admin/API console before shipping.
-    "https://admin.mydesk.example.com".to_owned()
+    "https://admin.wibesk.example.com".to_owned()
 }
 
 #[inline]
 pub fn is_public(url: &str) -> bool {
     let url = url.to_ascii_lowercase();
-    url.contains("mydesk.example.com/") || url.ends_with("mydesk.example.com")
+    url.contains("wibesk.example.com/") || url.ends_with("wibesk.example.com")
 }
 
 pub fn get_udp_punch_enabled() -> bool {
@@ -2804,27 +2804,27 @@ mod tests {
 
     #[test]
     fn test_is_public() {
-        // Test URLs containing "mydesk.example.com/"
-        assert!(is_public("https://mydesk.example.com/"));
-        assert!(is_public("https://www.mydesk.example.com/"));
-        assert!(is_public("https://api.mydesk.example.com/v1"));
-        assert!(is_public("https://API.MYDESK.EXAMPLE.COM/v1"));
-        assert!(is_public("https://mydesk.example.com/path"));
+        // Test URLs containing "wibesk.example.com/"
+        assert!(is_public("https://wibesk.example.com/"));
+        assert!(is_public("https://www.wibesk.example.com/"));
+        assert!(is_public("https://api.wibesk.example.com/v1"));
+        assert!(is_public("https://API.WIBESK.EXAMPLE.COM/v1"));
+        assert!(is_public("https://wibesk.example.com/path"));
 
-        // Test URLs ending with "mydesk.example.com"
-        assert!(is_public("mydesk.example.com"));
-        assert!(is_public("https://mydesk.example.com"));
-        assert!(is_public("https://MyDesk.Example.com"));
-        assert!(is_public("http://www.mydesk.example.com"));
-        assert!(is_public("https://api.mydesk.example.com"));
+        // Test URLs ending with "wibesk.example.com"
+        assert!(is_public("wibesk.example.com"));
+        assert!(is_public("https://wibesk.example.com"));
+        assert!(is_public("https://WiBesk.Example.com"));
+        assert!(is_public("http://www.wibesk.example.com"));
+        assert!(is_public("https://api.wibesk.example.com"));
 
         // Test non-public URLs
         assert!(!is_public("https://example.com"));
         assert!(!is_public("https://custom-server.com"));
         assert!(!is_public("http://192.168.1.1"));
         assert!(!is_public("localhost"));
-        assert!(!is_public("https://mydesk.example.computer.com"));
-        assert!(!is_public("mydesk.example.comhello.com"));
+        assert!(!is_public("https://wibesk.example.computer.com"));
+        assert!(!is_public("wibesk.example.comhello.com"));
     }
 
     #[test]

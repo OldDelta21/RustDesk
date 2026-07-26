@@ -26,10 +26,10 @@
 			<key>CFBundleURLIconFile</key>
 			<string></string>
 			<key>CFBundleURLName</key>
-			<string>com.mydesk.app</string>
+			<string>com.wibesk.app</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>mydesk</string>
+				<string>wibesk</string>
 			</array>
 		</dict>
 	</array>
