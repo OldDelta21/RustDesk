@@ -433,6 +433,7 @@ class _ConnectionPageState extends State<ConnectionPage>
                                 hintText: _idInputFocused.value
                                     ? null
                                     : translate('Enter Remote ID'),
+                                hintTextDirection: TextDirection.rtl,
                                 contentPadding: const EdgeInsets.symmetric(
                                     horizontal: 15, vertical: 13)),
                             controller: fieldTextEditingController,

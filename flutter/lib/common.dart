@@ -251,23 +251,23 @@ class MyTheme {
   MyTheme._();
 
   static const Color grayBg = Color(0xFFEFEFF2);
-  static const Color accent = Color(0xFF14B8A6);
-  static const Color accent50 = Color(0x7714B8A6);
-  static const Color accent80 = Color(0xAA14B8A6);
+  static const Color accent = Color(0xFF0EA5E9);
+  static const Color accent50 = Color(0x770EA5E9);
+  static const Color accent80 = Color(0xAA0EA5E9);
   static const Color canvasColor = Color(0xFF0F172A);
   static const Color border = Color(0xFFCCCCCC);
-  static const Color idColor = Color(0xFF2DD4BF);
+  static const Color idColor = Color(0xFF38BDF8);
   static const Color darkGray = Color.fromARGB(255, 148, 148, 148);
   static const Color cmIdColor = Color(0xFF21790B);
   static const Color dark = Colors.black87;
-  static const Color button = Color(0xFF14B8A6);
+  static const Color button = Color(0xFF0EA5E9);
   static const Color hoverBorder = Color(0xFF999999);
 
-  // WiBesk slate palette (dark theme)
-  static const Color slate900 = Color(0xFF0B1120);
-  static const Color slate800 = Color(0xFF161E2E);
-  static const Color slate700 = Color(0xFF25324A);
-  static const Color slate600 = Color(0xFF3A4A63);
+  // WiBesk navy/slate palette (dark theme)
+  static const Color slate900 = Color(0xFF0F172A);
+  static const Color slate800 = Color(0xFF1E293B);
+  static const Color slate700 = Color(0xFF334155);
+  static const Color slate600 = Color(0xFF475569);
 
   // ListTile
   static const ListTileThemeData listTileTheme = ListTileThemeData(
@@ -398,6 +398,15 @@ class MyTheme {
         ),
       ),
     ),
+    cardTheme: CardTheme(
+      elevation: 0,
+      color: Colors.white,
+      margin: EdgeInsets.zero,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+        side: BorderSide(width: 1, color: grayBg),
+      ),
+    ),
     scrollbarTheme: scrollbarTheme,
     inputDecorationTheme: isDesktop
         ? InputDecorationTheme(
@@ -495,6 +504,15 @@ class MyTheme {
           width: 1,
           color: slate700,
         ),
+      ),
+    ),
+    cardTheme: CardTheme(
+      elevation: 0,
+      color: slate800,
+      margin: EdgeInsets.zero,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+        side: BorderSide(width: 1, color: slate700),
       ),
     ),
     scrollbarTheme: scrollbarThemeDark,
@@ -3711,10 +3729,13 @@ class ComboBox extends StatelessWidget {
                 color: enabled
                     ? Theme.of(context).textTheme.titleMedium?.color
                     : disabledTextColor(context, enabled)),
-            icon: const Icon(
-              Icons.expand_more_sharp,
-              size: 20,
-            ).marginOnly(right: 15),
+            icon: const Padding(
+              padding: EdgeInsetsDirectional.only(end: 15),
+              child: Icon(
+                Icons.expand_more_sharp,
+                size: 20,
+              ),
+            ),
             onChanged: enabled
                 ? (String? newValue) {
                     if (newValue != null && newValue != ref.value) {
@@ -3727,11 +3748,14 @@ class ComboBox extends StatelessWidget {
             items: values.map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
                 value: value,
-                child: Text(
-                  value,
-                  style: const TextStyle(fontSize: 15),
-                  overflow: TextOverflow.ellipsis,
-                ).marginOnly(left: 15),
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.only(start: 15),
+                  child: Text(
+                    value,
+                    style: const TextStyle(fontSize: 15),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
               );
             }).toList(),
           )),

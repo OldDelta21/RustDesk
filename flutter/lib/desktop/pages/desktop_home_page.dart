@@ -187,66 +187,64 @@ class _DesktopHomePageState extends State<DesktopHomePage>
   buildIDBoard(BuildContext context) {
     final model = gFFI.serverModel;
     return Container(
-      margin: const EdgeInsets.only(left: 20, right: 11),
-      height: 57,
+      margin: const EdgeInsets.only(left: 20, right: 11, top: 8, bottom: 8),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.baseline,
-        textBaseline: TextBaseline.alphabetic,
+        // Stretch so the accent bar always spans the full label+value height,
+        // regardless of the active font's line-height metrics (baseline
+        // alignment here previously caused the Persian "IranSans" font to
+        // overlap the bar/value at larger line heights).
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Container(
             width: 2,
             decoration: const BoxDecoration(color: MyTheme.accent),
-          ).marginOnly(top: 5),
+          ),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.only(left: 7),
               child: Column(
+                mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    height: 25,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          translate("ID"),
-                          style: TextStyle(
-                              fontSize: 14,
-                              color: Theme.of(context)
-                                  .textTheme
-                                  .titleLarge
-                                  ?.color
-                                  ?.withOpacity(0.5)),
-                        ).marginOnly(top: 5),
-                        buildPopupMenu(context)
-                      ],
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        translate("ID"),
+                        style: TextStyle(
+                            fontSize: 14,
+                            color: Theme.of(context)
+                                .textTheme
+                                .titleLarge
+                                ?.color
+                                ?.withOpacity(0.5)),
+                      ),
+                      buildPopupMenu(context)
+                    ],
+                  ).marginOnly(bottom: 2),
+                  GestureDetector(
+                    onDoubleTap: () {
+                      Clipboard.setData(
+                          ClipboardData(text: model.serverId.text));
+                      showToast(translate("Copied"));
+                    },
+                    child: Directionality(
+                      textDirection: TextDirection.ltr,
+                      child: TextFormField(
+                        controller: model.serverId,
+                        readOnly: true,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          isDense: true,
+                          contentPadding: EdgeInsets.zero,
+                        ),
+                        style: TextStyle(
+                          fontSize: 22,
+                        ),
+                      ).workaroundFreezeLinuxMint(),
                     ),
                   ),
-                  Flexible(
-                    child: GestureDetector(
-                      onDoubleTap: () {
-                        Clipboard.setData(
-                            ClipboardData(text: model.serverId.text));
-                        showToast(translate("Copied"));
-                      },
-                      child: Directionality(
-                        textDirection: TextDirection.ltr,
-                        child: TextFormField(
-                          controller: model.serverId,
-                          readOnly: true,
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            contentPadding:
-                                EdgeInsets.only(top: 10, bottom: 10),
-                          ),
-                          style: TextStyle(
-                            fontSize: 22,
-                          ),
-                        ).workaroundFreezeLinuxMint(),
-                      ),
-                    ),
-                  )
                 ],
               ),
             ),
@@ -300,18 +298,19 @@ class _DesktopHomePageState extends State<DesktopHomePage>
     return Container(
       margin: EdgeInsets.only(left: 20.0, right: 16, top: 13, bottom: 13),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.baseline,
-        textBaseline: TextBaseline.alphabetic,
+        // See buildIDBoard: stretch instead of baseline so the accent bar
+        // always spans the full label+value height under any font metrics.
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Container(
             width: 2,
-            height: 52,
             decoration: BoxDecoration(color: MyTheme.accent),
           ),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.only(left: 7),
               child: Column(
+                mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   AutoSizeText(
@@ -319,8 +318,9 @@ class _DesktopHomePageState extends State<DesktopHomePage>
                     style: TextStyle(
                         fontSize: 14, color: textColor?.withOpacity(0.5)),
                     maxLines: 1,
-                  ),
+                  ).marginOnly(bottom: 2),
                   Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Expanded(
                         child: GestureDetector(
@@ -338,8 +338,8 @@ class _DesktopHomePageState extends State<DesktopHomePage>
                               readOnly: true,
                               decoration: InputDecoration(
                                 border: InputBorder.none,
-                                contentPadding:
-                                    EdgeInsets.only(top: 14, bottom: 10),
+                                isDense: true,
+                                contentPadding: EdgeInsets.zero,
                               ),
                               style: TextStyle(fontSize: 15),
                             ).workaroundFreezeLinuxMint(),
@@ -610,14 +610,10 @@ class _DesktopHomePageState extends State<DesktopHomePage>
               0, marginTop, 0, bind.isIncomingOnly() ? marginTop : 0),
           child: Container(
               decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                begin: AlignmentDirectional.centerStart,
-                end: AlignmentDirectional.centerEnd,
-                colors: [
-                  Color.fromARGB(255, 226, 66, 188),
-                  Color.fromARGB(255, 244, 114, 124),
-                ],
-              )),
+                color: MyTheme.slate800,
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: MyTheme.slate700, width: 1),
+              ),
               padding: EdgeInsets.all(20),
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -628,7 +624,7 @@ class _DesktopHomePageState extends State<DesktopHomePage>
                                   child: Text(
                                 translate(title),
                                 style: TextStyle(
-                                    color: Colors.white,
+                                    color: MyTheme.accent,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 15),
                               ).marginOnly(bottom: 6)),
@@ -640,7 +636,7 @@ class _DesktopHomePageState extends State<DesktopHomePage>
                             translate(content),
                             style: TextStyle(
                                 height: 1.5,
-                                color: Colors.white,
+                                color: Colors.white70,
                                 fontWeight: FontWeight.normal,
                                 fontSize: 13),
                           ).marginOnly(bottom: 20)
@@ -653,10 +649,9 @@ class _DesktopHomePageState extends State<DesktopHomePage>
                                     FixedWidthButton(
                                       width: 150,
                                       padding: 8,
-                                      isOutline: true,
+                                      isOutline: false,
                                       text: translate(btnText),
                                       textColor: Colors.white,
-                                      borderColor: Colors.white,
                                       textSize: 20,
                                       radius: 10,
                                       onTap: onPressed,
@@ -675,7 +670,7 @@ class _DesktopHomePageState extends State<DesktopHomePage>
                                         style: TextStyle(
                                             decoration:
                                                 TextDecoration.underline,
-                                            color: Colors.white,
+                                            color: MyTheme.accent,
                                             fontSize: 12),
                                       )).marginOnly(top: 6)),
                             ]
@@ -688,7 +683,7 @@ class _DesktopHomePageState extends State<DesktopHomePage>
             child: IconButton(
               icon: Icon(
                 Icons.close,
-                color: Colors.white,
+                color: Colors.white70,
                 size: 20,
               ),
               onPressed: closeCard,

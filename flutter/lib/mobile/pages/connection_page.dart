@@ -239,7 +239,10 @@ class _ConnectionPageState extends State<ConnectionPage> {
                             color: MyTheme.idColor,
                           ),
                           decoration: InputDecoration(
-                            labelText: translate('Remote ID'),
+                            label: Directionality(
+                              textDirection: TextDirection.rtl,
+                              child: Text(translate('Remote ID')),
+                            ),
                             // hintText: 'Enter your remote ID',
                             border: InputBorder.none,
                             helperStyle: const TextStyle(

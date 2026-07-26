@@ -10,16 +10,20 @@
 #   scripts/apply_wibesk_branding.sh <source_dir> [--skip-build]
 #
 # Expected files in <source_dir> (case-insensitive match, spaces ok):
-#   favicon.png         - square app icon (used as-is, and converted to .ico)
+#   favicon white.png   - square app icon with an opaque white background;
+#                         this is the primary icon used for desktop app icons
+#                         and window/title-bar headers (used as-is, and
+#                         converted to the multi-resolution app_icon.ico)
 #   logo.png            - wide logo, colored/light variant (default + light theme)
 #   white.png           - wide logo, white variant (dark theme)
-#   favicon white.png   - optional circular/white icon badge; copied to
-#                         assets/icon_dark.png for future use, not yet wired
-#                         into any widget (loadIcon() has no dark variant today)
+#   favicon.png         - optional transparent-background icon variant;
+#                         copied to assets/icon_dark.png for future use, not
+#                         yet wired into any widget (loadIcon() has no
+#                         alternate-icon variant today)
 #
 # Any file not found is skipped with a warning; the script does not fail
-# unless the square icon (favicon*.png) is missing, since the Windows .ico
-# conversion depends on it.
+# unless the square white-background icon is missing, since the Windows
+# .ico conversion depends on it.
 
 set -euo pipefail
 
@@ -70,21 +74,23 @@ find_one() {
     return 1
 }
 
-ICON_SRC="$(find_one "$SRC_DIR" "favicon.png" || true)"
-# Exclude anything with "white" in the name from the plain logo match.
+# Primary icon: the white-background favicon. This is what desktop app
+# icons and window headers should show.
+ICON_SRC="$(find_one "$SRC_DIR" "favicon white.png" "favicon_white.png" "faviconwhite.png" || true)"
 LOGO_SRC="$(find_one "$SRC_DIR" "logo.png" "logo.jpg" || true)"
 LOGO_DARK_SRC="$(find_one "$SRC_DIR" "white.png" || true)"
-ICON_BADGE_SRC="$(find_one "$SRC_DIR" "favicon white.png" "favicon_white.png" "faviconwhite.png" || true)"
+# Bonus/reserved: the plain transparent-background favicon, if present.
+ICON_BADGE_SRC="$(find_one "$SRC_DIR" "favicon.png" || true)"
 
 echo "Detected in $SRC_DIR:"
-echo "  icon (favicon.png)        -> ${ICON_SRC:-NOT FOUND}"
+echo "  icon (Favicon White.png, primary) -> ${ICON_SRC:-NOT FOUND}"
 echo "  logo (Logo.png)           -> ${LOGO_SRC:-NOT FOUND}"
 echo "  logo_dark (White.png)     -> ${LOGO_DARK_SRC:-NOT FOUND}"
-echo "  icon badge (Favicon White.png, optional) -> ${ICON_BADGE_SRC:-not found, skipping}"
+echo "  icon badge (favicon.png, optional, transparent bg) -> ${ICON_BADGE_SRC:-not found, skipping}"
 echo
 
 if [ -z "$ICON_SRC" ]; then
-    echo "ERROR: no favicon.png (square app icon) found in $SRC_DIR - required to build app_icon.ico." >&2
+    echo "ERROR: no white-background favicon found in $SRC_DIR - required to build app_icon.ico." >&2
     exit 1
 fi
 
