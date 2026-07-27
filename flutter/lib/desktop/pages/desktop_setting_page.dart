@@ -369,25 +369,29 @@ class _DesktopSettingPageState extends State<DesktopSettingPage>
             }
             selectedTab.value = tab.key;
           },
-          child: Row(children: [
-            Container(
-              width: 4,
-              height: _kTabHeight * 0.7,
-              color: selected ? _accentColor : null,
+          child: Container(
+            margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            decoration: BoxDecoration(
+              color: selected ? MyTheme.accent.withOpacity(0.15) : null,
+              borderRadius: BorderRadius.circular(8),
             ),
-            Icon(
-              selected ? tab.selected : tab.unselected,
-              color: selected ? _accentColor : null,
-              size: 20,
-            ).marginOnly(left: 13, right: 10),
-            Text(
-              translate(tab.label),
-              style: TextStyle(
-                  color: selected ? _accentColor : null,
-                  fontWeight: FontWeight.w400,
-                  fontSize: _kContentFontSize),
-            ),
-          ]),
+            child: Row(children: [
+              Icon(
+                selected ? tab.selected : tab.unselected,
+                color: selected ? _accentColor : null,
+                size: 20,
+              ),
+              const SizedBox(width: 12),
+              Text(
+                translate(tab.label),
+                style: TextStyle(
+                    color: selected ? _accentColor : null,
+                    fontWeight: FontWeight.w400,
+                    fontSize: _kContentFontSize),
+              ),
+            ]),
+          ),
         ),
       );
     });
@@ -2499,49 +2503,64 @@ class _AboutState extends State<_About> {
                     translate('Website'),
                     style: linkStyle,
                   ).marginSymmetric(vertical: 4.0)),
-              Container(
-                decoration: BoxDecoration(
-                  color: MyTheme.accent,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                padding:
-                    const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
-                child: SelectionArea(
-                    child: Row(
-                  children: [
-                    Expanded(
+              Center(
+                child: Container(
+                  constraints: const BoxConstraints(maxWidth: 420),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF1E293B),
+                    border: Border.all(
+                        color: MyTheme.accent.withOpacity(0.3), width: 1),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
+                  child: SelectionArea(
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            'WibyDesigners.com',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16),
-                          ),
-                          const Text(
-                            'گروه طراحان ویبی',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 14),
-                          ),
-                          const SizedBox(height: 10),
-                          const Text(
-                            'Copyright © 2026 WibyDesigners.com. کلیه حقوق برای گروه طراحان ویبی محفوظ است.',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          if (license.isNotEmpty)
-                            Text(
-                              license,
-                              style: const TextStyle(color: Colors.white),
-                            ),
-                        ],
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        'WiBesk | ویبسک',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: MyTheme.accent,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18),
                       ),
-                    ),
-                  ],
-                )),
+                      const SizedBox(height: 6),
+                      const Text(
+                        'گروه طراحان ویبی',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Color(0xFFF8FAFC),
+                            fontWeight: FontWeight.w600,
+                            fontSize: 14),
+                      ),
+                      const SizedBox(height: 4),
+                      const Text(
+                        'WibyDesigners.com',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Color(0xFF94A3B8), fontSize: 13),
+                      ),
+                      const SizedBox(height: 14),
+                      const Text(
+                        'Copyright © 2026 WibyDesigners.com. کلیه حقوق برای گروه طراحان ویبی محفوظ است.',
+                        textAlign: TextAlign.center,
+                        style:
+                            TextStyle(color: Color(0xFF94A3B8), fontSize: 12),
+                      ),
+                      if (license.isNotEmpty) ...[
+                        const SizedBox(height: 8),
+                        Text(
+                          license,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                              color: Color(0xFF94A3B8), fontSize: 12),
+                        ),
+                      ],
+                    ],
+                  )),
+                ),
               ).marginSymmetric(vertical: 4.0)
             ],
           ).marginOnly(left: _kContentHMargin)
@@ -3135,6 +3154,14 @@ void changeSocks5Proxy() async {
       close();
     }
 
+    const fieldPadding = EdgeInsets.symmetric(horizontal: 14, vertical: 12);
+    // Each row below is pinned to an explicit LTR Directionality so the
+    // [field, spacer, label] order is deterministic regardless of the app's
+    // ambient RTL locale - the label Text still reads correctly right-aligned
+    // via textAlign, since plain Persian text shapes fine under either
+    // paragraph direction. This avoids the RTL Row-mirroring trap where a
+    // one-sided margin (meant as a gap between two widgets) ends up on the
+    // wrong side once child order silently flips.
     return CustomAlertDialog(
       title: Text(translate('Socks5/Http(s) Proxy')),
       content: ConstrainedBox(
@@ -3142,39 +3169,16 @@ void changeSocks5Proxy() async {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                if (!isMobile)
-                  ConstrainedBox(
-                    constraints: const BoxConstraints(minWidth: 140),
-                    child: Align(
-                        alignment: AlignmentDirectional.centerEnd,
-                        child: Row(
-                          children: [
-                            Text(
-                              translate('Server'),
-                            ).marginOnly(right: 4),
-                            Tooltip(
-                              waitDuration: Duration(milliseconds: 0),
-                              message: translate("default_proxy_tip"),
-                              child: Icon(
-                                Icons.help_outline_outlined,
-                                size: 16,
-                                color: Theme.of(context)
-                                    .textTheme
-                                    .titleLarge
-                                    ?.color
-                                    ?.withOpacity(0.5),
-                              ),
-                            ),
-                          ],
-                        )).marginOnly(right: 10),
-                  ),
-                Expanded(
-                  child: Directionality(
-                    textDirection: TextDirection.ltr,
+            Directionality(
+              textDirection: TextDirection.ltr,
+              child: Row(
+                children: [
+                  Expanded(
                     child: TextField(
+                      textDirection: TextDirection.ltr,
+                      textAlign: TextAlign.left,
                       decoration: InputDecoration(
+                        contentPadding: fieldPadding,
                         errorText: proxyMsg.isNotEmpty ? proxyMsg : null,
                         labelText: isMobile ? translate('Server') : null,
                         helperText:
@@ -3186,47 +3190,76 @@ void changeSocks5Proxy() async {
                       enabled: !isOptFixed,
                     ).workaroundFreezeLinuxMint(),
                   ),
-                ),
-              ],
-            ).marginOnly(bottom: 8),
-            Row(
-              children: [
-                if (!isMobile)
-                  ConstrainedBox(
-                      constraints: const BoxConstraints(minWidth: 140),
-                      child: Text(
-                        '${translate("Username")}:',
-                        textAlign: TextAlign.right,
-                      ).marginOnly(right: 10)),
-                Expanded(
-                  child: Directionality(
-                    textDirection: TextDirection.ltr,
+                  if (!isMobile) const SizedBox(width: 16),
+                  if (!isMobile)
+                    SizedBox(
+                      width: 120,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Tooltip(
+                            waitDuration: Duration(milliseconds: 0),
+                            message: translate("default_proxy_tip"),
+                            child: Icon(
+                              Icons.help_outline_outlined,
+                              size: 16,
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge
+                                  ?.color
+                                  ?.withOpacity(0.5),
+                            ),
+                          ),
+                          const SizedBox(width: 4),
+                          Text(
+                            translate('Server'),
+                            textAlign: TextAlign.right,
+                          ),
+                        ],
+                      ),
+                    ),
+                ],
+              ),
+            ).marginOnly(bottom: 12),
+            Directionality(
+              textDirection: TextDirection.ltr,
+              child: Row(
+                children: [
+                  Expanded(
                     child: TextField(
+                      textDirection: TextDirection.ltr,
+                      textAlign: TextAlign.left,
                       controller: userController,
                       decoration: InputDecoration(
+                        contentPadding: fieldPadding,
                         labelText: isMobile ? translate('Username') : null,
                       ),
                       enabled: !isOptFixed,
                     ).workaroundFreezeLinuxMint(),
                   ),
-                ),
-              ],
-            ).marginOnly(bottom: 8),
-            Row(
-              children: [
-                if (!isMobile)
-                  ConstrainedBox(
-                      constraints: const BoxConstraints(minWidth: 140),
+                  if (!isMobile) const SizedBox(width: 16),
+                  if (!isMobile)
+                    SizedBox(
+                      width: 120,
                       child: Text(
-                        '${translate("Password")}:',
+                        translate("Username"),
                         textAlign: TextAlign.right,
-                      ).marginOnly(right: 10)),
-                Expanded(
-                  child: Obx(() => Directionality(
-                        textDirection: TextDirection.ltr,
-                        child: TextField(
+                      ),
+                    ),
+                ],
+              ),
+            ).marginOnly(bottom: 12),
+            Directionality(
+              textDirection: TextDirection.ltr,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Obx(() => TextField(
+                          textDirection: TextDirection.ltr,
+                          textAlign: TextAlign.left,
                           obscureText: obscure.value,
                           decoration: InputDecoration(
+                              contentPadding: fieldPadding,
                               labelText:
                                   isMobile ? translate('Password') : null,
                               suffixIcon: IconButton(
@@ -3238,10 +3271,19 @@ void changeSocks5Proxy() async {
                           controller: pwdController,
                           enabled: !isOptFixed,
                           maxLength: bind.mainMaxEncryptLen(),
-                        ).workaroundFreezeLinuxMint(),
-                      )),
-                ),
-              ],
+                        ).workaroundFreezeLinuxMint()),
+                  ),
+                  if (!isMobile) const SizedBox(width: 16),
+                  if (!isMobile)
+                    SizedBox(
+                      width: 120,
+                      child: Text(
+                        translate("Password"),
+                        textAlign: TextAlign.right,
+                      ),
+                    ),
+                ],
+              ),
             ),
             // NOT use Offstage to wrap LinearProgressIndicator
             if (isInProgress)
